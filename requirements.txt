@@ -1,2 +1,5 @@
 # We inherit all of the dependencies from the JupyterHub Sphinx Theme
 git+https://github.com/jupyterhub/jupyterhub-sphinx-theme
+
+# To parse the Jupyter blog
+feedparser

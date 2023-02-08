@@ -20,7 +20,8 @@ def docs(session):
         session.posargs.pop(session.posargs.index("live"))
         session.install("sphinx-autobuild")
         AUTOBUILD_IGNORE = [
-            "_build",
+            "docs/_build",
+            "docs/_data",
         ]
         cmd = ["sphinx-autobuild"]
         # Autobuild requires absolute paths for some silly reason
