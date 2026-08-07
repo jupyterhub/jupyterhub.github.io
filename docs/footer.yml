@@ -1,0 +1,39 @@
+# Shared footer for JupyterHub-family sites.
+# This repo (hub.jupyter.org) is the source of truth for it.
+#
+# Other JupyterHub-family sites (e.g. contrib.hub.jupyter.org) can reuse it by
+# adding to their own myst.yml:
+#
+#   extends:
+#     - https://raw.githubusercontent.com/jupyterhub/jupyterhub.github.io/main/docs/footer.yml
+#
+# They'll also need to register the footer plugin themselves
+# (extends does not yet pull in project plugins, we're working on it!)
+#
+#   project:
+#     plugins:
+#       - https://github.com/jupyter-book/myst-plugins/releases/download/footer-latest/index.mjs
+#
+# Content must be inline (not a file path) so it works when extended remotely.
+version: 1
+site:
+  parts:
+    footer: |
+      ```{footer}
+      title: JupyterHub Project
+      description: JupyterHub is an open source community dedicated to empowering collaborative computing for everyone, everywhere.
+
+
+      links:
+        Documentation:
+          - User Guide: https://jupyterhub.readthedocs.io
+          - Community Contributions: https://contrib.hub.jupyter.org
+        Community:
+          - Team Compass: https://compass.hub.jupyter.org
+          - Zulip Chat: https://jupyter.zulipchat.com
+
+      icons:
+        github: https://github.com/jupyterhub
+
+      copyright: © 2026 JupyterHub Team. Built with MyST.
+      ```
