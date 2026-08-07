@@ -26,8 +26,9 @@ site:
 
       links:
         Documentation:
-          - User Guide: https://jupyterhub.readthedocs.io
-          - Community Contributions: https://contrib.hub.jupyter.org
+          - JupyterHub Application Guide: https://jupyterhub.readthedocs.io
+          - JupyterHub for Kubernetes: https://z2jh.jupyter.org
+          - JupyterHub Contrib: https://contrib.hub.jupyter.org
         Community:
           - Team Compass: https://compass.hub.jupyter.org
           - Zulip Chat: https://jupyter.zulipchat.com

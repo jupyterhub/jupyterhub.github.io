@@ -15,6 +15,8 @@ site:
       url: https://compass.hub.jupyter.org
     - title: 🗣️ Community Chat
       url: https://jupyter.zulipchat.com/#narrow/channel/469744-jupyterhub
+    - title: 👥 JupyterHub Contrib
+      url: https://contrib.hub.jupyter.org
   options:
     logo: ./_static/images/logo.png
     logo_dark: ./_static/images/logo-dark.png
