@@ -1,0 +1,16 @@
+version: 1
+project:
+  id: jupyterhub-project
+  title: JupyterHub Project
+  github: https://github.com/jupyterhub/jupyterhub.github.io
+  plugins:
+    - https://github.com/myst-contrib/myst-listing/releases/latest/download/plugin.mjs
+site:
+  template: book-theme
+  nav:
+    - title: 🧭 Team Compass
+      url: https://compass.hub.jupyter.org
+    - title: 🗣️ Community Chat
+      url: https://jupyter.zulipchat.com/#narrow/channel/469744-jupyterhub
+  options:
+    logo_text: JupyterHub Project
