@@ -1,11 +1,7 @@
 # The JupyterHub Project
 
-This is a high-level overview of the JupyterHub Project.
-
-```{admonition} Work in progress
-This is a work-in-progress!
-We will update it with new links in the near future.
-```
+JupyterHub is an open source community dedicated to **empowering collaborative computing for everyone, everywhere**.
+This site is a high-level overview of the JupyterHub Project, with pointers to other places where you can learn more.
 
 ## Blog
 
