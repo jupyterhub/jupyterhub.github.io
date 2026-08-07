@@ -13,4 +13,5 @@ site:
     - title: 🗣️ Community Chat
       url: https://jupyter.zulipchat.com/#narrow/channel/469744-jupyterhub
   options:
-    logo_text: JupyterHub Project
+    logo: ./_static/images/logo.png
+    logo_dark: ./_static/images/logo-dark.png
