@@ -15,7 +15,7 @@ Its goal is:
 This is a GitHub Pages site that is being built with the action in `.github/workflows`.
 We added a `CNAME` to the `jupyter.org` DNS entries [following these github instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
-It is built with Sphinx and the [JupyterHub Sphinx Theme](https://github.com/jupyterhub/jupyterhub-sphinx-theme).
+It is built with [mystmd](https://mystmd.org/).
 
 ## To build the site with `nox`
 
@@ -35,7 +35,7 @@ Follow these steps:
    Or with a server that lets you preview pages and auto-update with changes:
 
    ```shell
-   nox -s docs -- live
+   nox -s docs-live
    ```
 
 ## To build the site locally
@@ -45,8 +45,8 @@ Follow these steps:
    ```shell
    pip install -r requirements.txt
    ```
-2. **Build with Sphinx**:
+2. **Build with mystmd**:
 
    ```shell
-   sphinx-build docs docs/_build/dirhtml -b dirhtml
+   cd docs && myst build --html
    ```

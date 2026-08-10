@@ -1,5 +1,6 @@
-# We inherit all of the dependencies from the JupyterHub Sphinx Theme
-git+https://github.com/jupyterhub/jupyterhub-sphinx-theme
+# We use mystmd to build our documentation
+mystmd
 
-# To parse the Jupyter blog
+# To parse the Jupyter blog and write it out as YAML
 feedparser
+pyyaml

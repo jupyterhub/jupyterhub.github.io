@@ -1,34 +1,29 @@
 """
 Build the site locally and preview it with an isolated environment.
 
-* Use `-- live` to use a live webserver.
-* Use `-- -r` to re-build the environment from scratch.
+* Use `-r` to re-build the environment from scratch.
 """
 import nox
-from pathlib import Path
 
 nox.options.reuse_existing_virtualenvs = True
 
-build_command = ["-b", "dirhtml", "docs", "docs/_build/dirhtml"]
+
+def _fetch_feed(session):
+    session.install("-r", "requirements.txt")
+    session.run("python", "docs/scripts/download_jupyterhub_feed.py")
 
 
 @nox.session
 def docs(session):
-    """Build the documentation. Use `-- live` for a live server to preview changes."""
-    session.install("-r", "requirements.txt")
-    if "live" in session.posargs:
-        session.posargs.pop(session.posargs.index("live"))
-        session.install("sphinx-autobuild")
-        AUTOBUILD_IGNORE = [
-            "docs/_build",
-            "docs/_data",
-        ]
-        cmd = ["sphinx-autobuild"]
-        # Autobuild requires absolute paths for some silly reason
-        for folder in AUTOBUILD_IGNORE:
-            folder = Path(folder).resolve()
-            cmd.extend(f"--ignore {folder}".split())
-    else:
-        cmd = ["sphinx-build"]
-    cmd.extend(build_command + session.posargs)
-    session.run(*cmd)
+    """Build the documentation as static HTML."""
+    _fetch_feed(session)
+    session.chdir("docs")
+    session.run("myst", "build", "--html", *session.posargs)
+
+
+@nox.session(name="docs-live")
+def docs_live(session):
+    """Start a live-preview server for the documentation."""
+    _fetch_feed(session)
+    session.chdir("docs")
+    session.run("myst", "start", *session.posargs)
