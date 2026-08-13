@@ -1,13 +1,11 @@
-# Read the Docs configuration file, used only for pull request previews.
-# The production site is deployed to GitHub Pages (see .github/workflows/deploy.yml).
-# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+# Used only for pull request previews!
+# The production site is deployed via GitHub Pages.
 
 version: 2
 
 build:
   os: ubuntu-24.04
   tools:
-    # mystmd is installed from PyPI via requirements.txt but runs on Node.js
     python: "3.13"
     nodejs: "22"
   commands:
