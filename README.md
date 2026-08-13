@@ -50,3 +50,15 @@ Follow these steps:
    ```shell
    cd docs && myst build --html
    ```
+
+## Web hosting
+
+### GitHub Pages for the live site
+
+This site is hosted with GitHub Pages, so that all of the other repositories in `jupyterhub/` that use GitHub Pages will automatically be served at `hub.jupyter.org/[repository]`.
+
+### ReadTheDocs for PR Previews
+
+We use ReadTheDocs just for PR previews.
+If you'd like access to the ReadTheDocs site, ask a team member.
+The `main` branch is "hidden" in the RTD configuration so it won't show up in web searches, since we use GitHub Pages for the live site.
