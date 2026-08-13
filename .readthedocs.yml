@@ -1,0 +1,19 @@
+# Read the Docs configuration file, used only for pull request previews.
+# The production site is deployed to GitHub Pages (see .github/workflows/deploy.yml).
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+version: 2
+
+build:
+  os: ubuntu-24.04
+  tools:
+    # mystmd is installed from PyPI via requirements.txt but runs on Node.js
+    python: "3.13"
+    nodejs: "22"
+  commands:
+    - pip install nox
+    - nox -s docs
+    - mkdir -p $READTHEDOCS_OUTPUT/html/
+    - cp -r docs/_build/html/. "$READTHEDOCS_OUTPUT/html"
+    # This seems to break RTD if we leave it in because it finds the HTML files
+    - rm -rf docs/_build/html/
