@@ -14,7 +14,7 @@ def _fetch_data(session):
     session.install("-r", "requirements.txt")
     session.run("python", "docs/scripts/download_jupyterhub_feed.py")
     if not Path("docs/_data/repositories.json").exists():
-        session.run("bash", "docs/scripts/download_repositories.sh", external=True)
+        session.run("python", "docs/scripts/download_repositories.py")
 
 
 @nox.session
