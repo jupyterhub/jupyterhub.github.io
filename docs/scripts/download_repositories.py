@@ -13,7 +13,10 @@ from urllib.request import Request, urlopen
 url = "https://api.github.com/orgs/jupyterhub/repos?per_page=100"
 token = os.environ.get("GH_TOKEN")
 headers = {"Authorization": f"Bearer {token}"} if token else {}
-repos = json.load(urlopen(Request(url, headers=headers)))
+repos = json.load(urlopen(Request(url, headers=headers), timeout=30))
+# We only take 100 repos for now - this error helps us know if we need to add pagination
+# Beceause our repos have grown to too many
+assert len(repos) < 100, "The org has outgrown one API page: we should add pagination."
 
 records = [
     {
