@@ -4,13 +4,14 @@ We use the plain GitHub API instead of the `gh` CLI because it works without aut
 and ReadTheDocs builders don't have `gh` installed.
 If we start hitting rate limits, we should give GH_TOKEN to ReadTheDocs
 """
+
 import json
 import os
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-# One page of 100 covers the org's ~76 repos; add pagination if it ever outgrows that.
-url = "https://api.github.com/orgs/jupyterhub/repos?per_page=100"
+# type=public keeps private repos out even when run with an org-member token.
+url = "https://api.github.com/orgs/jupyterhub/repos?per_page=100&type=public"
 token = os.environ.get("GH_TOKEN")
 headers = {"Authorization": f"Bearer {token}"} if token else {}
 repos = json.load(urlopen(Request(url, headers=headers), timeout=30))
