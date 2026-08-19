@@ -1,0 +1,36 @@
+"""Download the list of active repositories in the jupyterhub org for the myst-listing plugin.
+
+We use the plain GitHub API instead of the `gh` CLI because it works without authentication
+and ReadTheDocs builders don't have `gh` installed.
+If we start hitting rate limits, we should give GH_TOKEN to ReadTheDocs
+"""
+
+import json
+import os
+from pathlib import Path
+from urllib.request import Request, urlopen
+
+# type=public keeps private repos out even when run with an org-member token.
+url = "https://api.github.com/orgs/jupyterhub/repos?per_page=100&type=public"
+token = os.environ.get("GH_TOKEN")
+headers = {"Authorization": f"Bearer {token}"} if token else {}
+repos = json.load(urlopen(Request(url, headers=headers), timeout=30))
+# We only take 100 repos for now - this error helps us know if we need to add pagination
+# Beceause our repos have grown to too many
+assert len(repos) < 100, "The org has outgrown one API page: we should add pagination."
+
+records = [
+    {
+        "title": repo["name"],
+        "url": repo["html_url"],
+        "description": repo["description"],
+        "stars": repo["stargazers_count"],
+        "updated": repo["updated_at"][:10],
+    }
+    for repo in repos
+    if not repo["archived"]
+]
+
+path_out = Path(__file__).parent.parent / "_data" / "repositories.json"
+path_out.write_text(json.dumps(records, indent=1))
+print(f"Wrote {len(records)} repositories to\n{path_out}")

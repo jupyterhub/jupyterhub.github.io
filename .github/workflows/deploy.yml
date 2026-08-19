@@ -43,6 +43,9 @@ jobs:
 
       # Building
       - name: Build site with nox
+        env:
+          # Authenticates the GitHub API call that downloads repository data
+          GH_TOKEN: ${{ github.token }}
         run: |
           nox -s docs
 
